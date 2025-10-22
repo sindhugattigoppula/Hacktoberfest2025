@@ -1,0 +1,41 @@
+#User function Template for python3
+class Solution:
+    def __init__(self):
+        self.max=0
+    def largestBst(self, root):
+        # Your code here
+    #     li=[float('-inf'),float('+inf')]
+    #     a=self.traversal(root,li)
+    #     return self.max
+    # def traversal(self,root,li):
+    #     if not root:
+    #         return 0
+    #     left=self.traversal(root.left,[li[0],root.data])
+    #     right=self.traversal(root.right,[root.data,li[1]])
+    #     if(not left and right or ):
+    #         if(self.max<1):
+    #             self.max=1
+    #         return 1
+    #     if (root.data>li[0] and root.data<li[1]):
+    #         if (self.max<left+right+1):
+    #             self.max=left+right+1
+    #         return left+right+1
+    #     else:
+    #         return 0
+        li=self.traversal(root)
+        return li[0]
+    def traversal(self,root):
+        if not root:
+            return [0,float('-inf'),float('+inf')]
+        if not root.left and not root.right:
+            return [1,root.data,root.data]
+        left=self.traversal(root.left)
+        right=self.traversal(root.right)
+        if(left[1]<root.data<right[2]):
+            min_value=min(left[2],right[2],root.data)
+            max_value=max(left[1],right[1],root.data)
+            return [1+left[0]+right[0],max_value,min_value]
+        else:
+            max_value=max(left[0],right[0])
+            return [max_value,float('+inf'),float('-inf')]
+        
